@@ -12,7 +12,9 @@
 using namespace std;
 
 int seed;
-vector <cTileClassParent> Map;
+vector <cTileClassParent*> Map;
+cPlayerOne* playerOne = new cPlayerOne();
+cPlayerTwo* playerTwo = new cPlayerTwo();
 
 int main()
 {
@@ -20,17 +22,24 @@ int main()
 	LoadSeed("seed.txt", seed);
 	LoadMap("Monopoly.txt", Map);
 	srand(seed);
-	unique_ptr <cTileClassParent> prt = make_unique<cTileClassParent>();
-	*prt = Map.front();
 	int playerCount = 0;
+	int max = 26;
 	for (int i = 0; i < 20; i++)
 	{
 		int roll = Random();
-		cout << "Player Rolls " << roll << endl;
 		playerCount = playerCount + roll;
-		Map.at(playerCount);
-		cout << "Player Land On" << endl;//  << endl;
-		system("pause");
+		if (playerCount >= 26)
+		{
+			cout << "Player Crosses over Go" << endl;
+			cout << "Player collects £200" << endl;
+			cout << " " << endl;
+			
+			int result = playerCount - max;
+			playerCount = result;
+		}
+		Map[playerCount]->stepOn(playerOne, playerTwo);
+		cout << "Player Rolls " << roll << endl;
+		cout << " " << endl;
 	}
 	system("pause");
 }

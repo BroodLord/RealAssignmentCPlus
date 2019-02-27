@@ -13,39 +13,6 @@ int Random()
 	return static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 6.0f + 1);
 }
 
-//void cGoTile::stepOn()
-//{
-//
-//}
-//void cAirportTile::stepOn()
-//{
-//
-//}
-//void cBonus::stepOn()
-//{
-//
-//}
-//void cPenaltyTile::stepOn()
-//{
-//
-//}
-//void cJailTile::stepOn()
-//{
-//
-//}
-//void cGoToJailTile::stepOn()
-//{
-//
-//}
-//void cFreeParkingTile::stepOn()
-//{
-//
-//}
-//void cPropertyTiles::stepOn()
-//{
-//
-//}
-
 int LoadSeed(const char* inputSeed, int &seedValue)
 {
 	std::ifstream file;
@@ -58,7 +25,7 @@ int LoadSeed(const char* inputSeed, int &seedValue)
 	return true;
 }
 
-int LoadMap(const char* mapDetails, std::vector <cTileClassParent> &Map)
+int LoadMap(const char* mapDetails, std::vector <cTileClassParent*> &Map)
 {
 	std::ifstream file;
 	file.open(mapDetails);
@@ -67,38 +34,76 @@ int LoadMap(const char* mapDetails, std::vector <cTileClassParent> &Map)
 		for (int i = 0; i < 26; i++)
 		{
 			int group;
-			string name;
 			int cost = 0;
 			int rent = 0;
 			int propertyGroup = 0;
+			string name;
 			file >> group;
 			if (group == 1)
 			{
-				unique_ptr <cTileClassParent> tempRow (new cTileClassParent);
-				int counter = 0;
+				cPropertyTiles* prt = new cPropertyTiles();
 				string temp;
-				while (counter <= 2)
+				for (int i = 0; i < 3; i++)
 				{
-					getline(file, name, ' ');
-					counter++;
-					if (counter == 3)
-					{
-						name = (temp + " " + name);
-					}
-					temp = name;
+					getline(file, temp, ' ');
+					name = name + " " + temp;
 				}
 				file >> cost;
 				file >> rent;
 				file >> propertyGroup;
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
+				prt->setValues(group, name, cost, rent, propertyGroup);
+				Map.push_back(prt);
+
 			}
-			else
+			if (group == 2)
 			{
-				unique_ptr <cTileClassParent> tempRow(new cTileClassParent);
+				cGoTile* prt = new cGoTile();
 				getline(file, name);
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+
+			}
+			if (group == 3)
+			{
+				cAirportTile* prt = new cAirportTile();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+			}
+			if (group == 4)
+			{
+				cBonus* prt = new cBonus();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+			}
+			if (group == 5)
+			{
+				cPenaltyTile* prt = new cPenaltyTile();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+			}
+			if (group == 6)
+			{
+				cJailTile* prt = new cJailTile();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+			}
+			if (group == 7)
+			{
+				cGoToJailTile* prt = new cGoToJailTile();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
+			}
+			if (group == 8)
+			{
+				cFreeParkingTile* prt = new cFreeParkingTile();
+				getline(file, name);
+				prt->setValues(group, name);
+				Map.push_back(prt);
 			}
 		}
 	}
