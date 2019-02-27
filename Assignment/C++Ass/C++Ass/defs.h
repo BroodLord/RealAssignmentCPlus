@@ -10,18 +10,20 @@ class cPlayerOne
 public:
 
 private:
+	int playerBalance = 1500;
 };
 class cPlayerTwo
 {
 public:
 
 private:
+	int playerBalance = 1500;
 };
 
 class cTileClassParent
 {
 public:
-	void setValues(int group, string name, int cost, int rent, int propertyGroup)
+	virtual void cTileClassParent::setValues(int group, string name, int cost, int rent, int propertyGroup)
 	{
 		tileGroup = group;
 		tileName = name;
@@ -29,6 +31,8 @@ public:
 		tileRent = rent;
 		tilePropertyGroup = propertyGroup;
 	}
+	//virtual ~cTileClassParent() {}
+	//virtual void stepOn() = 0;
 	
 private:
 	int tileGroup;
@@ -44,6 +48,7 @@ private:
 class cGoTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -51,6 +56,7 @@ private:
 class cAirportTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -58,13 +64,15 @@ private:
 class cBonus : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
 };
-class CPenaltyTile : public cTileClassParent
+class cPenaltyTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -72,6 +80,7 @@ private:
 class cJailTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -79,6 +88,7 @@ private:
 class cGoToJailTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -86,6 +96,7 @@ private:
 class cFreeParkingTile : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
 
@@ -95,9 +106,15 @@ private:
 class cPropertyTiles : public cTileClassParent
 {
 public:
+	//void stepOn();
 
 private:
-
+	string tileName;
+	int tileCost;
+	int tileRent;
+	int tileGroup;
+	int tilePropertyGroup;
 };
 int LoadSeed(const char* inputSeed, int &seedValue);
-int LoadMap(const char* mapDetails, std::vector <cTileClassParent> &Map);
+int LoadMap(const char* mapDetails, vector <cTileClassParent> &Map);
+int Random();

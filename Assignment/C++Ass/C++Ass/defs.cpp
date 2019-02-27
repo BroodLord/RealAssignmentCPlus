@@ -8,6 +8,44 @@
 
 using namespace std;
 
+int Random()
+{
+	return static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 6.0f + 1);
+}
+
+//void cGoTile::stepOn()
+//{
+//
+//}
+//void cAirportTile::stepOn()
+//{
+//
+//}
+//void cBonus::stepOn()
+//{
+//
+//}
+//void cPenaltyTile::stepOn()
+//{
+//
+//}
+//void cJailTile::stepOn()
+//{
+//
+//}
+//void cGoToJailTile::stepOn()
+//{
+//
+//}
+//void cFreeParkingTile::stepOn()
+//{
+//
+//}
+//void cPropertyTiles::stepOn()
+//{
+//
+//}
+
 int LoadSeed(const char* inputSeed, int &seedValue)
 {
 	std::ifstream file;
@@ -32,84 +70,37 @@ int LoadMap(const char* mapDetails, std::vector <cTileClassParent> &Map)
 			string name;
 			int cost = 0;
 			int rent = 0;
-			int propertyGroup = 10;
+			int propertyGroup = 0;
 			file >> group;
 			if (group == 1)
 			{
-				unique_ptr <cTileClassParent> tempRow(new cPropertyTiles);
-				file >> name;
-				string temp = name;
-				file >> name;
-				name = (temp + " " + name);
+				unique_ptr <cTileClassParent> tempRow (new cTileClassParent);
+				int counter = 0;
+				string temp;
+				while (counter <= 2)
+				{
+					getline(file, name, ' ');
+					counter++;
+					if (counter == 3)
+					{
+						name = (temp + " " + name);
+					}
+					temp = name;
+				}
 				file >> cost;
 				file >> rent;
 				file >> propertyGroup;
 				tempRow->setValues(group, name, cost, rent, propertyGroup);
 				Map.push_back(*tempRow);
 			}
-			if (group == 2)
+			else
 			{
-				unique_ptr <cTileClassParent> tempRow(new cGoTile);
-				file >> name;
+				unique_ptr <cTileClassParent> tempRow(new cTileClassParent);
+				getline(file, name);
 				tempRow->setValues(group, name, cost, rent, propertyGroup);
 				Map.push_back(*tempRow);
 			}
-			if (group == 3)
-			{
-				unique_ptr <cTileClassParent> tempRow(new cAirportTile);
-				file >> name;
-				string temp = name;
-				file >> name;
-				name = (temp + " " + name);
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			if (group == 4)
-			{
-				unique_ptr <cTileClassParent> tempRow(new cBonus);
-				file >> name;
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			if (group == 5)
-			{
-				unique_ptr <cTileClassParent> tempRow(new CPenaltyTile);
-				file >> name;
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			if (group == 6)
-			{
-				unique_ptr <cTileClassParent> tempRow(new cJailTile);
-				file >> name;
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			if (group == 7)
-			{
-				unique_ptr <cTileClassParent> tempRow(new cGoToJailTile);
-				file >> name;
-				string temp = name;
-				file >> name;
-				name = (temp + " " + name);
-				file >> temp;
-				name = (name + " " + temp);
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			if (group == 8)
-			{
-				unique_ptr <cTileClassParent> tempRow(new cFreeParkingTile);
-				file >> name;
-				string temp = name;
-				file >> name;
-				name = (temp + " " + name);
-				tempRow->setValues(group, name, cost, rent, propertyGroup);
-				Map.push_back(*tempRow);
-			}
-			
 		}
-
 	}
 	return 0;
 }
