@@ -37,21 +37,24 @@ int LoadMap(const char* mapDetails, std::vector <cTileClassParent*> &Map)
 			int cost = 0;
 			int rent = 0;
 			int propertyGroup = 0;
+			bool dogOwned = false;
+			bool carOwned = false;
 			string name;
 			file >> group;
 			if (group == 1)
 			{
 				cPropertyTiles* prt = new cPropertyTiles();
 				string temp;
-				for (int i = 0; i < 3; i++)
-				{
-					getline(file, temp, ' ');
-					name = name + " " + temp;
-				}
+				getline(file, name, ' ');
+				getline(file, name, ' ');
+				getline(file, temp, ' ');
+				name = name + " " + temp;
 				file >> cost;
 				file >> rent;
 				file >> propertyGroup;
-				prt->setValues(group, name, cost, rent, propertyGroup);
+				dogOwned = false;
+				carOwned = false;
+				prt->setValues(group, name, cost, rent, propertyGroup, dogOwned, carOwned);
 				Map.push_back(prt);
 
 			}
@@ -67,7 +70,9 @@ int LoadMap(const char* mapDetails, std::vector <cTileClassParent*> &Map)
 			{
 				cAirportTile* prt = new cAirportTile();
 				getline(file, name);
-				prt->setValues(group, name);
+				dogOwned = false;
+				carOwned = false;
+				prt->setValues(group, name, dogOwned, carOwned);
 				Map.push_back(prt);
 			}
 			if (group == 4)
