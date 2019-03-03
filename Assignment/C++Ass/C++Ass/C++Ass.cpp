@@ -12,28 +12,30 @@
 using namespace std;
 
 int seed;
-vector <cTileClassParent*> Map;
+typedef vector <cTileClassParent*> Map;
 cPlayerOne* playerOne = new cPlayerOne();
 cPlayerTwo* playerTwo = new cPlayerTwo();
 ePlayerStates playerStates = dog;
+bool goneGo = false;
 
 int main()
 {
 	//srand(static_cast<unsigned int> (time(0)));
+	static Map map;
 	LoadSeed("seed.txt", seed);
-	LoadMap("Monopoly.txt", Map);
-	int dogBalance = 0;
-	int carBalance = 0;
+	LoadMap("Monopoly.txt", map);
+	auto dogBalance = 0;
+	auto carBalance = 0;
 	string playerName;
 	playerOne->getBalance(dogBalance);
 	playerTwo->getBalance(carBalance);
 	srand(seed);
 	int playerOnePos = 0;
 	int playerTwoPos = 0;
-	int max = 26;
+	const int MAX = 26;
 	cout << "Welcome to Monoloply" << endl;
 	cout << " " << endl;
-	for (int i = 0; i < 20; i++)
+	for (auto i = 0; i < 20; i++)
 	{
 		switch (playerStates)
 		{
@@ -42,14 +44,14 @@ int main()
 			playerName = "Dog";
 			int roll = Random();
 			playerOnePos = playerOnePos + roll;
+			cout << playerName << " Rolls " << roll << endl;
 			if (playerOnePos >= 26)
 			{
-				Map[0]->stepOn(playerOne, playerTwo, playerOnePos, dogBalance, carBalance, playerName, playerOnePos);
-				int result = playerOnePos - max;
+				map[0]->stepOn(playerOnePos, dogBalance, playerName, goneGo);
+				int result = playerOnePos - MAX;
 				playerOnePos = result;
 			}
-			cout << playerName << " Rolls " << roll << endl;
-			Map[playerOnePos]->stepOn(playerOne, playerTwo, playerOnePos, dogBalance, carBalance, playerName, playerOnePos);
+			map[playerOnePos]->stepOn(playerOnePos, dogBalance, playerName, goneGo);
 			cout << " " << endl;
 			playerStates = car;
 		}
@@ -59,19 +61,27 @@ int main()
 			playerName = "Car";
 			int roll = Random();
 			playerTwoPos = playerTwoPos + roll;
+			cout << playerName << " Rolls " << roll << endl;
 			if (playerTwoPos >= 26)
 			{
-				Map[0]->stepOn(playerOne, playerTwo, playerTwoPos, dogBalance, carBalance, playerName, playerTwoPos);
-				int result = playerTwoPos - max;
+				map[0]->stepOn(playerTwoPos, carBalance, playerName, goneGo);
+				int result = playerTwoPos - MAX;
 				playerTwoPos = result;
 			}
-			cout << playerName << " Rolls " << roll << endl;
-			Map[playerTwoPos]->stepOn(playerOne, playerTwo, playerTwoPos, dogBalance, carBalance, playerName, playerTwoPos);
+			map[playerTwoPos]->stepOn(playerTwoPos, carBalance, playerName, goneGo);
 			cout << " " << endl;
 			playerStates = dog;
 		}
 			break;
 		}
+	}
+	if (dogBalance > carBalance)
+	{
+		cout << "Dog is the winner!" << endl;
+	}
+	else if (dogBalance < carBalance)
+	{
+		cout << "Car is the winner!" << endl;
 	}
 	system("pause");
 }

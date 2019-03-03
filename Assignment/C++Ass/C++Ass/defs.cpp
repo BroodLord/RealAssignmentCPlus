@@ -31,7 +31,7 @@ int LoadMap(const char* mapDetails, std::vector <cTileClassParent*> &Map)
 	file.open(mapDetails);
 	if (file.is_open())
 	{
-		for (int i = 0; i < 26; i++)
+		for (auto i = 0; i < 26; i++)
 		{
 			int group;
 			int cost = 0;
