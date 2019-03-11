@@ -1,6 +1,6 @@
 ﻿  C++Ass.cpp
-c:\users\danny\desktop\c++ass\realassignmentcplus\assignment\c++ass\c++ass\defs.h(8): warning C4309: 'initializing': truncation of constant value
+d:\dkavanagh2\documents\github\realassignmentcplus\assignment\c++ass\c++ass\defs.h(8): warning C4309: 'initializing': truncation of constant value
   defs.cpp
-c:\users\danny\desktop\c++ass\realassignmentcplus\assignment\c++ass\c++ass\defs.h(8): warning C4309: 'initializing': truncation of constant value
+d:\dkavanagh2\documents\github\realassignmentcplus\assignment\c++ass\c++ass\defs.h(8): warning C4309: 'initializing': truncation of constant value
   Generating Code...
-  C++Ass.vcxproj -> C:\Users\danny\Desktop\C++ASS\RealAssignmentCPlus\Assignment\C++Ass\Debug\C++Ass.exe
+  C++Ass.vcxproj -> D:\DKavanagh2\Documents\GitHub\RealAssignmentCPlus\Assignment\C++Ass\Debug\C++Ass.exe

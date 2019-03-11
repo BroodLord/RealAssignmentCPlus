@@ -217,32 +217,32 @@ public:
 		int ranEvent = Random();
 			if (ranEvent == 1)
 			{
-				cout << playerName << " Find Some Money " << "Player Gains " << POUND << "20" << endl;//  << endl;
-				dogBalance += 20;
+				cout << playerName << " Pay Food Bill " << "Player Loses " << POUND << "20" << endl;//  << endl;
+				dogBalance -= 20;
 			}
 			if (ranEvent == 2)
 			{
-				cout << playerName << " Win Competition " << "Player Gains " << POUND << "50" << endl;
-				dogBalance += 50;
+				cout << playerName << " Pay Phone Bill " << "Player Loses " << POUND << "50" << endl;
+				dogBalance -= 50;
 			}
 			if (ranEvent == 3)
 			{
-				cout << playerName << " Tax Rebeate " << "Player Gains " << POUND << "100" << endl;
-				dogBalance += 100;
+				cout << playerName << " Pay Heating Bill " << "Player Loses " << POUND << "100" << endl;
+				dogBalance -= 100;
 			}
 			if (ranEvent == 4)
 			{
-				cout << playerName << " Win Lottery " << "Player Loses " << POUND << "150" << endl;
-				dogBalance += 150;
+				cout << playerName << " Pay Vehicle Bill" << "Player Loses " << POUND << "150" << endl;
+				dogBalance -= 150;
 			}
 			if (ranEvent == 5)
 			{
-				cout << playerName << " Bequest " << "Player Gains " << POUND << "200" << endl;
+				cout << playerName << " Pay Fuel Bill " << "Player Loses " << POUND << "200" << endl;
 				dogBalance += 200;
 			}
 			if (ranEvent == 6)
 			{
-				cout << playerName << " Birthday " << "Player Gains " << POUND << "300" << endl;
+				cout << playerName << " Pay Windfall Tax " << "Player Loses " << POUND << "300" << endl;
 				dogBalance += 300;
 			}
 			cout << playerName << " now has " << POUND << dogBalance << endl;
@@ -330,9 +330,27 @@ public:
 	}
 	void stepOn(int &playerPos, int &dogBalance, string &playerName, bool &goneGo)
 	{
+		static int dogPropertyCountZero = 0;
+		static int dogPropertyCountOne = 0;
+		static int dogPropertyCountTwo = 0;
+		static int dogPropertyCountThree = 0;
+		static int dogPropertyCountFour = 0;
+		static int dogPropertyCountFive = 0;
+		static int dogPropertyCountSix = 0;
+		static int dogPropertyCountSeven = 0;
+		static int carPropertyCountZero = 0;
+		static int carPropertyCountOne = 0;
+		static int carPropertyCountTwo = 0;
+		static int carPropertyCountThree = 0;
+		static int carPropertyCountFour = 0;
+		static int carPropertyCountFive = 0;
+		static int carPropertyCountSix = 0;
+		static int carPropertyCountSeven = 0;
+
 		cout << playerName << " Land On " << tileName << endl;//  << endl;
 		if (playerName == "Dog")
 		{
+			int counter = 0;
 			if (dogIsOwner == false && carIsOwner == false)
 			{
 				if (dogBalance >= 0)
@@ -342,8 +360,99 @@ public:
 					cout << playerName << " now has " << POUND << dogBalance << endl;
 					cout << " " << endl;
 					dogIsOwner = true;
+
+					if (tilePropertyGroup == 0 && dogPropertyCountZero < 3)
+					{
+						dogPropertyCountZero++;
+					}
+					if (tilePropertyGroup == 1 && dogPropertyCountOne < 3)
+					{
+						dogPropertyCountOne++;
+					}
+					if (tilePropertyGroup == 2 && dogPropertyCountTwo < 3)
+					{
+						dogPropertyCountTwo++;
+					}
+					if (tilePropertyGroup == 3 && dogPropertyCountThree < 3)
+					{
+						dogPropertyCountThree++;
+					}
+					if (tilePropertyGroup == 4 && dogPropertyCountFour < 3)
+					{
+						dogPropertyCountFour++;
+					}
+					if (tilePropertyGroup == 5 && dogPropertyCountFive < 3)
+					{
+						dogPropertyCountFive++;
+					}
+					if (tilePropertyGroup == 6 && dogPropertyCountSix < 4)
+					{
+						dogPropertyCountSix++;
+					}
+					if (tilePropertyGroup == 7 && dogPropertyCountSeven < 3)
+					{
+						dogPropertyCountSeven++;
+					}
 				}
 			}
+			if (dogPropertyCountZero == 2)
+			{
+				dogPropertyCountZero++;
+				
+				cout << "Rent for properties on Red tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountOne == 2)
+			{
+				dogPropertyCountOne++;
+			
+				cout << "Rent for properties on Grey tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+            if (dogPropertyCountTwo == 2)
+			{
+				dogPropertyCountTwo++;
+			
+				cout << "Rent for properties on Brown tiles have been double for car" << endl;
+			tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountThree == 3)
+			{
+				dogPropertyCountThree++;
+				
+				cout << "Rent for properties on Orange tiles have been double for car" << endl;
+			tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountFour == 2)
+			{
+				dogPropertyCountFour++;
+				
+				cout << "Rent for properties on Yellow tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountFive == 2)
+			{
+				dogPropertyCountFive++;
+				
+				cout << "Rent for properties on Green tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountSix == 3)
+			{
+				dogPropertyCountSix++;
+				
+				cout << "Rent for properties on Blue tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (dogPropertyCountSeven == 2)
+			{
+				dogPropertyCountSeven++;
+				cout << "Rent for properties on Purple tiles have been double for car" << endl;
+				tileRent = tileRent * 2;
+			}
+
+
+
 			if (carIsOwner == true)
 			{
 				cout << playerName << " Pays Rent " << POUND << tileRent << endl;
@@ -354,6 +463,7 @@ public:
 		}
 		if (playerName == "Car")
 		{
+			int counter = 0;
 			if (dogIsOwner == false && carIsOwner == false)
 			{
 				if (dogBalance >= 0)
@@ -363,7 +473,101 @@ public:
 					cout << playerName << " now has " << POUND << dogBalance << endl;
 					cout << " " << endl;
 					carIsOwner = true;
+					if (tilePropertyGroup == 0 && carPropertyCountZero < 3)
+					{
+						carPropertyCountZero++;
+					}
+					if (tilePropertyGroup == 1 && carPropertyCountOne < 3)
+					{
+						carPropertyCountOne++;
+					}
+					if (tilePropertyGroup == 2 && carPropertyCountTwo < 3)
+					{
+						carPropertyCountTwo++;
+						
+					}
+					if (tilePropertyGroup == 3 && carPropertyCountThree < 4)
+					{
+						carPropertyCountThree++;
+						
+					}
+					if (tilePropertyGroup == 4 && carPropertyCountFour < 3)
+					{
+						carPropertyCountFour++;
+						
+					}
+					if (tilePropertyGroup == 5 && carPropertyCountFive < 3)
+					{
+						carPropertyCountFive++;
+						
+					}
+					if (tilePropertyGroup == 6 && carPropertyCountSix < 4)
+					{
+						carPropertyCountSix++;
+						
+					}
+					if (tilePropertyGroup == 7 && carPropertyCountSeven < 3)
+					{
+						carPropertyCountSeven++;
+					}
 				}
+
+			}
+			if (carPropertyCountZero == 2)
+			{
+				carPropertyCountZero++;
+				
+				cout << "Rent for properties on Red tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountOne == 2)
+			{
+				carPropertyCountOne++;
+				
+				cout << "Rent for properties on Grey tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountTwo == 2)
+			{
+				carPropertyCountTwo++;
+				
+				cout << "Rent for properties on Brown tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountThree == 3)
+			{
+				carPropertyCountThree++;
+			
+				cout << "Rent for properties on Orange tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountFour == 2)
+			{
+				carPropertyCountFour++;
+				
+				cout << "Rent for properties on Yellow tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountFive == 2)
+			{
+				carPropertyCountFive++;
+				
+				cout << "Rent for properties on Green tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountSix == 3)
+			{
+				carPropertyCountSix++;
+				
+				cout << "Rent for properties on Blue tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
+			}
+			if (carPropertyCountSeven == 2)
+			{
+				dogPropertyCountSeven++;
+				
+				cout << "Rent for properties on Purple tiles have been double for Dog" << endl;
+				tileRent = tileRent * 2;
 			}
 			if (dogIsOwner == true)
 			{
@@ -383,7 +587,6 @@ protected:
 	int tilePropertyGroup;
 	bool dogIsOwner = false;
 	bool carIsOwner = false;
-
 };
 
 int LoadSeed(const char* inputSeed, int &seedValue);
@@ -416,7 +619,7 @@ public:
 		cPlayerTwo* playerTwo = new cPlayerTwo();
 		ePlayerStates playerStates = dog;
 		bool goneGo = false;
-		static Map map;
+		Map map;
 		LoadSeed("seed.txt", seed);
 		LoadMap("Monopoly.txt", map);
 		auto dogBalance = 0;
@@ -424,7 +627,7 @@ public:
 		string playerName;
 		playerOne->getBalance(dogBalance);
 		playerTwo->getBalance(carBalance);
-		srand(seed);
+		srand(10);
 		int playerOnePos = 0;
 		int playerTwoPos = 0;
 		const int MAX = 26;
@@ -432,6 +635,8 @@ public:
 		cout << " " << endl;
 		for (auto i = 0; i < 20; i++)
 		{
+			cout << "Round " << i << "!" << endl;
+			cout << " "  << endl;
 			switch (playerStates)
 			{
 			case dog:
@@ -447,10 +652,9 @@ public:
 					playerOnePos = result;
 				}
 				map[playerOnePos]->stepOn(playerOnePos, dogBalance, playerName, goneGo);
-				cout << " " << endl;
+				cout << " " << endl;													
 				playerStates = car;
 			}
-			break;
 			case car:
 			{
 				playerName = "Car";
@@ -467,7 +671,6 @@ public:
 				cout << " " << endl;
 				playerStates = dog;
 			}
-			break;
 			}
 		}
 		Manager->displayWinner(dogBalance, carBalance);
