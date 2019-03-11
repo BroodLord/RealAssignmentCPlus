@@ -346,7 +346,7 @@ public:
 			}
 			if (carIsOwner == true)
 			{
-				cout << playerName << " Pays Rent " << POUND << tileCost << endl;
+				cout << playerName << " Pays Rent " << POUND << tileRent << endl;
 				dogBalance -= tileRent;
 				cout << playerName << " now has " << POUND << dogBalance << endl;
 				cout << " " << endl;
@@ -367,7 +367,7 @@ public:
 			}
 			if (dogIsOwner == true)
 			{
-				cout << playerName << " Pays Rent For " << POUND << tileCost << endl;
+				cout << playerName << " Pays Rent " << POUND << tileRent << endl;
 				dogBalance -= tileRent;
 				cout << playerName << " now has " << POUND << dogBalance << endl;
 				cout << " " << endl;
@@ -375,7 +375,7 @@ public:
 		}
 	}
 
-private:
+protected:
 	string tileName;
 	int tileCost;
 	int tileRent;
@@ -383,7 +383,94 @@ private:
 	int tilePropertyGroup;
 	bool dogIsOwner = false;
 	bool carIsOwner = false;
+
 };
 
 int LoadSeed(const char* inputSeed, int &seedValue);
 int LoadMap(const char* mapDetails, vector <cTileClassParent*> &Map);
+
+class cManagerClass
+{
+public:
+
+
+	void displayWinner(int dogBalance, int carBalance)
+	{
+		if (dogBalance > carBalance)
+		{
+			cout << "Dog is the winner!" << endl;
+		}
+		else if (dogBalance < carBalance)
+		{
+			cout << "Car is the winner!" << endl;
+		}
+		system("pause");
+	}
+
+	void playGame(cManagerClass* Manager)
+	{
+
+		int seed;
+		typedef vector <cTileClassParent*> Map;
+		cPlayerOne* playerOne = new cPlayerOne();
+		cPlayerTwo* playerTwo = new cPlayerTwo();
+		ePlayerStates playerStates = dog;
+		bool goneGo = false;
+		static Map map;
+		LoadSeed("seed.txt", seed);
+		LoadMap("Monopoly.txt", map);
+		auto dogBalance = 0;
+		auto carBalance = 0;
+		string playerName;
+		playerOne->getBalance(dogBalance);
+		playerTwo->getBalance(carBalance);
+		srand(seed);
+		int playerOnePos = 0;
+		int playerTwoPos = 0;
+		const int MAX = 26;
+		cout << "Welcome to Monoloply" << endl;
+		cout << " " << endl;
+		for (auto i = 0; i < 20; i++)
+		{
+			switch (playerStates)
+			{
+			case dog:
+			{
+				playerName = "Dog";
+				int roll = Random();
+				playerOnePos = playerOnePos + roll;
+				cout << playerName << " Rolls " << roll << endl;
+				if (playerOnePos >= 26)
+				{
+					map[0]->stepOn(playerOnePos, dogBalance, playerName, goneGo);
+					int result = playerOnePos - MAX;
+					playerOnePos = result;
+				}
+				map[playerOnePos]->stepOn(playerOnePos, dogBalance, playerName, goneGo);
+				cout << " " << endl;
+				playerStates = car;
+			}
+			break;
+			case car:
+			{
+				playerName = "Car";
+				int roll = Random();
+				playerTwoPos = playerTwoPos + roll;
+				cout << playerName << " Rolls " << roll << endl;
+				if (playerTwoPos >= 26)
+				{
+					map[0]->stepOn(playerTwoPos, carBalance, playerName, goneGo);
+					int result = playerTwoPos - MAX;
+					playerTwoPos = result;
+				}
+				map[playerTwoPos]->stepOn(playerTwoPos, carBalance, playerName, goneGo);
+				cout << " " << endl;
+				playerStates = dog;
+			}
+			break;
+			}
+		}
+		Manager->displayWinner(dogBalance, carBalance);
+		
+	}
+};
