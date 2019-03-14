@@ -6,13 +6,13 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include <ctime>
 #include "defs.h"
+#include "cOtherClasses.h"
 
 using namespace std;
 
 int main()
 {
-	cManagerClass* Manager = new cManagerClass();
-	Manager->playGame(Manager);
+	cManagerClass* pManager = new cManagerClass(); // creates a pointer of the manager class
+	pManager->mPlayGame(pManager); // plays the game
 }

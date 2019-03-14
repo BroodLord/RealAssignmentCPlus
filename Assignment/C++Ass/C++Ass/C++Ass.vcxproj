@@ -138,12 +138,32 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cAirportTile.h" />
+    <ClInclude Include="cBonus.h" />
+    <ClInclude Include="cClassParent.h" />
+    <ClInclude Include="cFreeParking.h" />
+    <ClInclude Include="cGoTile.h" />
+    <ClInclude Include="cGoToJailTile.h" />
+    <ClInclude Include="cJailTile.h" />
+    <ClInclude Include="cOtherClasses.h" />
+    <ClInclude Include="cPenaltyTile.h" />
+    <ClInclude Include="cPropertyTile.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C++Ass.cpp" />
+    <ClCompile Include="cAirportTile.cpp" />
+    <ClCompile Include="cBonus.cpp" />
+    <ClCompile Include="cClassParent.cpp" />
+    <ClCompile Include="cFreeParking.cpp" />
+    <ClCompile Include="cGoTile.cpp" />
+    <ClCompile Include="cGoToJailTile.cpp" />
+    <ClCompile Include="cJailTile.cpp" />
+    <ClCompile Include="cOtherClasses.cpp" />
+    <ClCompile Include="cPenaltyTile.cpp" />
+    <ClCompile Include="cPropertyTile.cpp" />
     <ClCompile Include="defs.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

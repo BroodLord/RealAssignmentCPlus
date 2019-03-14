@@ -1,1 +1,3 @@
-﻿  C++Ass.vcxproj -> C:\Users\danny\Desktop\C++ASS\RealAssignmentCPlus\Assignment\C++Ass\Debug\C++Ass.exe
+﻿  cOtherClasses.cpp
+c:\users\danny\desktop\c++ass\realassignmentcplus\assignment\c++ass\c++ass\cclassparent.h(5): warning C4309: 'initializing': truncation of constant value
+  C++Ass.vcxproj -> C:\Users\danny\Desktop\C++ASS\RealAssignmentCPlus\Assignment\C++Ass\Debug\C++Ass.exe

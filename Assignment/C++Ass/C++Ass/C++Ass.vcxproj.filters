@@ -27,6 +27,36 @@
     <ClInclude Include="defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cClassParent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGoTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cAirportTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cBonus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cPenaltyTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cJailTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGoToJailTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cFreeParking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cPropertyTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cOtherClasses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +66,36 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="defs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cClassParent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cGoTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cAirportTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cBonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cPenaltyTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cJailTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cGoToJailTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cFreeParking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cPropertyTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cOtherClasses.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
